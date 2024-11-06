@@ -26,29 +26,11 @@ fun SetUpNavGraph(
         startDestination = Screens.SplashScreen
     ) {
         composable<Screens.SplashScreen> {
-            SplashScreenComposable(
-                onSplashComplete = {
-                    navController.navigate(Screens.HomeScreen)
-                }
-            )
+            SplashScreenComposable()
         }
 
-        composable<Screens.HomeScreen> { backStackEntry ->
-            val savedStateHandle = backStackEntry.savedStateHandle
-            val productBackPressResult = savedStateHandle.getLiveData<Int>("productBackPressResult")
-            val viewModel = hiltViewModel<HomeViewModel>()
-            productBackPressResult.observe(LocalLifecycleOwner.current) { result ->
-                viewModel.updateCartCount(result)
-            }
-            HomeScreenComposable(
-                viewModel = viewModel,
-                onProfileClick = {
-                    navController.navigate(Screens.ProfileScreen(profile = it))
-                },
-                onProductClick = {
-                    navController.navigate(Screens.ProductDetailsScreen(productId = it))
-                }
-            )
+        composable<Screens.HomeScreen> {
+            HomeScreenComposable()
         }
 
         composable<Screens.ProductDetailsScreen>(
@@ -58,14 +40,7 @@ fun SetUpNavGraph(
                 )
             )
         ) {
-            val id = it.toRoute<Screens.ProductDetailsScreen>().productId
-            ProductDetailsScreenComposable(
-                onBackPress = {
-                    navController.previousBackStackEntry?.savedStateHandle?.set(
-                        "productBackPressResult", it
-                    )
-                    navController.popBackStack()
-                })
+            ProductDetailsScreenComposable()
         }
 
         composable<Screens.ProfileScreen>(

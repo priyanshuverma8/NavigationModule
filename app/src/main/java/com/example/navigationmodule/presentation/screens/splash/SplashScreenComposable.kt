@@ -13,16 +13,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.navigationmodule.presentation.LocalNavigationHandler
+import com.example.navigationmodule.presentation.navigation.Screens
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreenComposable(
-    onSplashComplete: () -> Unit
-) {
+fun SplashScreenComposable() {
+
+    val navigationHandler = LocalNavigationHandler.current
 
     LaunchedEffect(key1 = Unit) {
         delay(1500)
-        onSplashComplete()
+        navigationHandler.navigateToScreen(Screens.HomeScreen)
     }
 
     Column(

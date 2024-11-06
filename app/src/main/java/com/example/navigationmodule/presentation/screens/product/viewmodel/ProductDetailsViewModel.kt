@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ProductDetailsViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle
 ): ViewModel() {
 
     val productId = savedStateHandle.toRoute<Screens.ProductDetailsScreen>().productId
@@ -24,6 +24,10 @@ class ProductDetailsViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             _productCartCount.value += count
         }
+    }
+
+    fun setProductBackPressResult(result: Int) {
+
     }
 
 }

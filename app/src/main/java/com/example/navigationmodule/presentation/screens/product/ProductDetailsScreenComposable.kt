@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -15,18 +16,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.navigationmodule.presentation.LocalNavigationHandler
 import com.example.navigationmodule.presentation.screens.product.viewmodel.ProductDetailsViewModel
 
 @Composable
 fun ProductDetailsScreenComposable(
     viewModel: ProductDetailsViewModel = viewModel(),
-    onBackPress: (cartCount: Int) -> Unit
 ) {
 
     val cartCount by viewModel.productCartCount.collectAsStateWithLifecycle()
+    val navigationHandler = LocalNavigationHandler.current
 
     BackHandler {
-        onBackPress(cartCount)
+        viewModel.setProductBackPressResult(cartCount)
+        navigationHandler.navController.previousBackStackEntry?.savedStateHandle?.set(
+            "productBackPressResult", cartCount
+        )
+        navigationHandler.popBackStack()
     }
 
     Column(

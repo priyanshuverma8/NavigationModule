@@ -6,9 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.navigationmodule.presentation.navigation.SetUpNavGraph
+import com.example.navigationmodule.presentation.navigationV2.NavigationHandler
+import com.example.navigationmodule.presentation.navigationV2.NavigationHandlerImpl
 import com.example.navigationmodule.presentation.ui.theme.NavigationModuleTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,14 +23,26 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
+
+            val navigationHandler = remember {
+                NavigationHandlerImpl(navController)
+            }
+
             NavigationModuleTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    SetUpNavGraph(navController)
+                CompositionLocalProvider(LocalNavigationHandler provides navigationHandler) {
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background
+                    ) {
+                        SetUpNavGraph(navController)
+                    }
                 }
             }
+
         }
     }
+}
+
+val LocalNavigationHandler = staticCompositionLocalOf<NavigationHandler> {
+    error("No NavigationHandler provided")
 }
