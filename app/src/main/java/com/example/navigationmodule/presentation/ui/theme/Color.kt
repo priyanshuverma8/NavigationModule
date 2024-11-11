@@ -2,10 +2,13 @@ package com.example.navigationmodule.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+//Primary Colors
+val colorPrimary700 = Color(0xFF050A26)
+val colorPrimary600 = Color(0xFF09144C)
+val colorPrimary500 = Color(0xFF1E3AC7)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+//Secondary Colors
+val colorSecondary700 = Color(0xFFAD6500)
+
+//Tertiary Colors
+val colorTertiary700 = Color(0xFF009688)

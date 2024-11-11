@@ -6,15 +6,17 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.navigationmodule.presentation.navigation.SetUpNavGraph
-import com.example.navigationmodule.presentation.navigationV2.NavigationHandler
-import com.example.navigationmodule.presentation.navigationV2.NavigationHandlerImpl
+import com.example.navigationmodule.presentation.navigation.NavigationHandler
+import com.example.navigationmodule.presentation.navigation.NavigationHandlerImpl
 import com.example.navigationmodule.presentation.ui.theme.NavigationModuleTheme
+import com.example.navigationmodule.presentation.ui.theme.heading2Xs
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,6 +36,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                     ) {
+                        Text("", style = MaterialTheme.typography.heading2Xs)
                         SetUpNavGraph(navController)
                     }
                 }

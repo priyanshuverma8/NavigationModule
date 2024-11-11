@@ -1,7 +1,6 @@
-package com.example.navigationmodule.presentation.navigationV2
+package com.example.navigationmodule.presentation.navigation
 
 import androidx.navigation.NavController
-import com.example.navigationmodule.presentation.navigation.Screens
 
 interface NavigationHandler {
     val navController: NavController

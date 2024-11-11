@@ -1,6 +1,6 @@
 package com.example.navigationmodule.presentation.navigation
 
-import com.example.navigationmodule.domain.entities.ProfileEntity
+import com.example.navigationmodule.domain.entities.profile.ProfileEntity
 import kotlinx.serialization.Serializable
 
 sealed interface Screens{

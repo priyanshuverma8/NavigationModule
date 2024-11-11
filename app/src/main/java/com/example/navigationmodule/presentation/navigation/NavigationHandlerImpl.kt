@@ -1,9 +1,6 @@
-package com.example.navigationmodule.presentation.navigationV2
+package com.example.navigationmodule.presentation.navigation
 
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.example.navigationmodule.domain.entities.ProfileEntity
-import com.example.navigationmodule.presentation.navigation.Screens
 
 class NavigationHandlerImpl(
     override val navController: NavHostController

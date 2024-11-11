@@ -1,4 +1,4 @@
-package com.example.navigationmodule.domain.entities
+package com.example.navigationmodule.domain.entities.profile
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.toRoute
